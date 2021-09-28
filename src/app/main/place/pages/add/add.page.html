@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/places/list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New place</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form name="placeForm" [formGroup]="placeForm" novalidate>
+    <ion-row class="ion-align-items-center">
+        <ion-col size="12">
+          <ion-item class="ion-margin-end">
+            <ion-label position="floating">Title</ion-label>
+            <ion-input formControlName="title"></ion-input>
+          </ion-item>
+          <ion-text color="danger" class="ion-padding" *ngIf="placeForm.get('title').hasError('required') && (placeForm.get('title').dirty || placeForm.get('title').touched)">
+            Title is required
+          </ion-text>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item class="ion-margin-end">
+            <ion-label position="floating">Image url</ion-label>
+            <ion-input formControlName="imageUrl"></ion-input>
+          </ion-item>
+          <ion-text color="danger" class="ion-padding" *ngIf="placeForm.get('imageUrl').hasError('required') && (placeForm.get('imageUrl').dirty || placeForm.get('imageUrl').touched)">
+            Image url is required
+          </ion-text>
+        </ion-col>
+        <ion-col size="12" class="ion-text-center">
+          <ion-button size="large" color="primary"
+            [disabled]="!placeForm.valid"
+            (click)="addPlace();">
+            Save
+          </ion-button>
+        </ion-col>
+    </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
